@@ -8,6 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+
+//аннотация Spring-класс является сервисом.Cодержат бизнес-логику приложения и могут использоваться
+//для обработки данных и взаимодействия с DAO
 @Service
 public class UserServiceImp implements UserService {
 
@@ -17,13 +20,16 @@ public class UserServiceImp implements UserService {
    @Transactional
    @Override
    public void add(User user) {
-      userDao.add(user);
-   }
+      userDao.add(user);}
+
 
    @Transactional(readOnly = true)
    @Override
-   public List<User> listUsers() {
-      return userDao.listUsers();
-   }
+   public List<User> listUsers() {return userDao.listUsers();}
 
+   @Transactional(readOnly = true)
+   @Override
+   public User getUserByCarModelAndSeries(String model, int series) {
+      return userDao.getUserByCarModelAndSeries(model, series);
+   }
 }
